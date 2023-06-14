@@ -1,19 +1,18 @@
+@import "../../styles.scss";
+
 .main-app {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 
     header {
         height: 80px;
-        display: flex;
-        align-items: center;
+        @include flex-vertically-center;
         justify-content: space-between;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         font-size: 1.4em;
 
         > * {
-            display: flex;
-            align-items: center;
+            @include flex-vertically-center;
             gap: 10px;
         }
 
@@ -39,8 +38,7 @@
 
     footer {
         height: 80px;
-        display: flex;
-        align-items: center;
+        @include flex-vertically-center;
         justify-content: center;
         color: whitesmoke;
         background-color: #151515;
