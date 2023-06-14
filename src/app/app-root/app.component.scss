@@ -19,10 +19,16 @@
 
         .logo-container {
             cursor: pointer;
-            gap: 10px;
+            gap: 6px;
             .logo-txt {
                 font-weight: 600;
                 color: #000;
+                letter-spacing: 1.2px;
+                font-family: cursive;
+            }
+            .logo-svg {
+                height: 32px;
+                width: 32px;
             }
         }
     }
