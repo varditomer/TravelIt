@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Travel } from 'src/app/models/travel.model';
 
 @Component({
   selector: 'app-traveling-preview',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./traveling-preview.component.scss']
 })
 export class TravelingPreviewComponent {
+
+  @Input() travel!: Travel
 
 }

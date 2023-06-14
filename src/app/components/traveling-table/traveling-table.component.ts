@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Travel } from 'src/app/models/travel.model';
+
+
 
 @Component({
   selector: 'app-traveling-table',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./traveling-table.component.scss']
 })
 export class TravelingTableComponent {
+
+  @Input() travels!: Travel[] | null
 
 }

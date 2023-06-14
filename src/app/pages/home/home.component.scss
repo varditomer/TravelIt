@@ -1,3 +1,7 @@
+@import "../../../styles.scss";
+
 .home-page {
+    @include flex-column;
     padding-block: 15px;
+    justify-content: space-between;
 }
