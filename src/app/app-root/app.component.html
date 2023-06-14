@@ -1,0 +1,17 @@
+<section class="main-app">
+  <header class="container">
+    <div class="logo-container" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <img class="logo-img" src="../../assets/icons/locations-logo.png" />
+      <span class="logo-txt">TravelIt</span>
+    </div>
+    <nav class="nav-container">
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </nav>
+  </header>
+  <main class="main-container container">
+    <router-outlet></router-outlet>
+  </main>
+  <footer class="container">
+    <p>TravelIt &copy; by Tomer Vardi</p>
+  </footer>
+</section>

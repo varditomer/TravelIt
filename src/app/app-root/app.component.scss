@@ -1,0 +1,43 @@
+.main-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    header {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        font-size: 1.4em;
+
+        > * {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-container {
+            cursor: pointer;
+            gap: 10px;
+            .logo-txt {
+                font-weight: 600;
+                color: #000;
+            }
+        }
+    }
+
+    main {
+        flex-grow: 1;
+    }
+
+    footer {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: whitesmoke;
+        background-color: #151515;
+        font-size: 1.2em;
+    }
+}
