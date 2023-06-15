@@ -2,19 +2,19 @@
     <h2>Adding Travel</h2>
     <div class="form-item">
         <label for="country" class="form-label">Country:</label>
-        <input id="country" type="text" class="form-input" autocomplete="off">
+        <input id="country" name="country" type="text" class="form-input" autocomplete="off" [ngModel]="travel.country" (ngModelChange)="onUserInput($event)">
     </div>
     <div class="form-item date-input">
         <label for="startDate"  class="form-label">Start Date:</label>
-        <input id="startDate" type="date" class="form-input">
+        <input id="startDate" name="startDate" type="date" class="form-input" [ngModel]="travel.start_date">
     </div>
     <div class="form-item date-input">
         <label for="endDate" class="form-label">End Date:</label>
-        <input id="endDate" type="date" class="form-input">
+        <input id="endDate" name="endDate" type="date" class="form-input" [ngModel]="travel.end_date">
     </div>
     <div class="form-item notes">
         <label for="notes" class="form-label">Notes:</label>
-        <input id="notes" type="text" class="form-input">
+        <input id="notes" name="notes" type="text" class="form-input" [ngModel]="travel.notes" autocomplete="off">
     </div>
     <button type="submit" class="submit" [disabled]="!addTravelForm.valid">Add</button>
 </form>

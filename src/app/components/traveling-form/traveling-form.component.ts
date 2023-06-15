@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Travel } from 'src/app/models/travel.model';
+import { Country, Travel } from 'src/app/models/travel.model';
+import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
   selector: 'app-traveling-form',
@@ -8,11 +9,25 @@ import { Travel } from 'src/app/models/travel.model';
 })
 export class TravelingFormComponent {
 
-  travel!: this
+  constructor(
+    private travelService: TravelService
+  ) { }
 
+  travel = this.travelService.getEmptyTravel()
+  countries!: Country[]
+
+  onUserInput(userInput: string) {
+    if (!userInput) return
+    this.travelService.getCountries(userInput).subscribe((countries) => {
+      this.countries = countries
+      console.log(`countries:`, countries)
+    })
+
+
+  }
 
   onAddTravel() {
-    console.log(`add Travel:`, )
+    console.log(`this.travel:`, this.travel)
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Travel } from '../models/travel.model';
-import { BehaviorSubject, catchError, map, retry, tap, throwError } from 'rxjs';
+import { Country, Travel } from '../models/travel.model';
+import { BehaviorSubject, catchError, map, retry, filter, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UtilService } from './util.service';
 
@@ -27,22 +27,32 @@ export class TravelService {
   public travels$ = this._travels$.asObservable() // travels collection read-only
 
   public getEmptyTravel = () => ({
-    _id: this.utilService.makeId,
+    _id: this.utilService.makeId(),
     country: '',
     start_date: new Date('2023-06-14'),
     end_date: new Date('2023-06-20'),
     notes: '',
     flag: ''
-  })
+  } as Travel)
 
 
   public getCountries(countryName: string) {
-    console.log(`blaaaa:`,)
-    console.log(`countryNames:`, countryName)
     return this.http.get<any>(`https://restcountries.com/v3.1/name/${countryName}`)
       .pipe(
-        map(res => res),
-        tap((res) => console.log(`res:`, res)),
+        map(res => res.map((country: any) => ({
+          name: country.name.common,
+          flag: country.flags.svg
+        }))),
+        map((countries: Country[]) => countries.filter((country: Country) => {
+          // Example: user's input: 'uni'
+          // United Arab Emirates
+          const names = country.name.split(' ')
+          // ['United', 'Arab', 'Emirates']
+          const startingNames = names.filter((name: string) => name.toLowerCase().startsWith(countryName.toLowerCase()))
+          // return only country's names that start with user's input -> startingNames = ['United']
+          return startingNames.length > 0
+          // return only countries that have at least one name that starts with user's input -> United Arab Emirates will be include
+        })),
         retry(1),
         catchError((err: HttpErrorResponse) => {
           console.log('err:', err)
@@ -50,8 +60,5 @@ export class TravelService {
         })
       )
   }
-
-
-  bla = this.getCountries('Israel')
 
 }

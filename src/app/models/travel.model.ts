@@ -6,3 +6,8 @@ export interface Travel {
     notes: string,
     flag: string
 }
+
+export interface Country {
+    name: string,
+    flag: string
+}
