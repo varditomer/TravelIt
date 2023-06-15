@@ -2,18 +2,16 @@
 
 .countries-modal {
     @include flex-column;
+    position: absolute;
     background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     padding: 8px;
-    direction: ltr;
     width: 100%;
-
     gap: 8px;
     max-height: 200px;
     overflow-y: auto;
-    position: absolute;
-    top: 20px;
+    top: 32px;
     left: 0;
     .country-container {
         @include flex-vertically-center;

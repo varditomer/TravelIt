@@ -18,14 +18,15 @@ export class TravelingFormComponent {
   isCountryModalOpen = false
 
   onUserInput(userInput: string) {
-    if (!userInput) return
-    this.travelService.getCountries(userInput).subscribe((countries) => {
-      if (!countries.length) return
-      this.countries = countries
-      this.isCountryModalOpen = true
-    })
-
-
+    if (!userInput) return this.countries = []
+    this.travelService.getCountries(userInput).subscribe(
+      (countries) => {
+        this.countries = countries
+        this.isCountryModalOpen = true
+      },
+      (error) => this.countries = []
+    )
+    return
   }
 
   onAddTravel() {
@@ -34,7 +35,7 @@ export class TravelingFormComponent {
 
   selectCountry(country: Country) {
     this.isCountryModalOpen = false
-    console.log(`1:`, )
+    console.log(`1:`,)
     console.log(`country:`, country)
   }
 

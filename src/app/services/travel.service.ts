@@ -55,7 +55,6 @@ export class TravelService {
         })),
         retry(1),
         catchError((err: HttpErrorResponse) => {
-          console.log('err:', err)
           return throwError(() => err)
         })
       )

@@ -16,6 +16,12 @@
         justify-content: space-between;
         &.country-form-container {
             position: relative;
+            app-countries-modal {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
         }
     }
     .form-label {
