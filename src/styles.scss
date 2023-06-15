@@ -1,13 +1,21 @@
 // Imports
 @import './assets/styles/setup/mixins';
+@import './assets/styles/setup/variables';
 
 // General settings
 * {
     box-sizing: border-box;
 }
 
+html {
+    background-color: $bgc-primary;
+}
+
 body {
     margin: 0;
+    ::selection {
+        background-color: $clr-accent;
+    }
 }
 
 h1,

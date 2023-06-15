@@ -8,7 +8,6 @@
         height: 80px;
         @include flex-vertically-center;
         justify-content: space-between;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         font-size: 1.4em;
 
         > * {
@@ -34,14 +33,14 @@
 
     main {
         flex-grow: 1;
+        color: $txt-primary;
     }
 
     footer {
-        height: 80px;
         @include flex-vertically-center;
+        height: 80px;
         justify-content: center;
-        color: whitesmoke;
-        background-color: #151515;
-        font-size: 1.2em;
+        font-size: 1.3em;
+        font-family: cursive;
     }
 }

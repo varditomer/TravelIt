@@ -1,0 +1,45 @@
+@import "../../../styles.scss";
+
+.traveling-form {
+    @include flex-column;
+    @include card-style;
+    gap: 10px;
+    width: 50%;
+    margin-inline: auto;
+    border-radius: 12px;
+    padding: 15px;
+    margin-block-end: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    .form-item {
+        @include flex-vertically-center;
+        justify-content: space-between;
+    }
+    .form-label {
+        font-family: monospace;
+        font-size: 1.3em;
+        font-weight: 600;
+    }
+
+    h2 {
+        font-family: cursive;
+        text-align: center;
+        text-decoration: underline 2px solid $clr-accent;
+        cursor: default;
+        &:hover {
+            text-decoration: underline 6px solid $clr-accent;
+        }
+    }
+
+    .submit {
+        margin-block-start: 15px;
+        background-color: $btn-primary;
+        border: none;
+        font-family: cursive;
+        font-size: 1.3em;
+        border-radius: 12px;
+        padding: 5px 10px;
+        color: white;
+
+    }
+}

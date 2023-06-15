@@ -1,15 +1,19 @@
 @import "../../../styles.scss";
 
 .traveling-table {
+    border-radius: 12px;
+    @include card-style;
     .table-header {
         display: grid;
         grid-template-columns: repeat(5, minmax(200px, 1fr));
         border: 1px solid black;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
         > *:not(:last-child) {
             border-inline-end: 1px solid black;
         }
-        >* {
-            padding: 10px 5px;
+        > * {
+            padding: 10px;
             font-weight: 500;
             font-size: 2em;
             font-family: monospace;
