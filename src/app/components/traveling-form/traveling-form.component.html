@@ -1,8 +1,8 @@
-<form action="" class="traveling-form">
+<form (ngSubmit)="onAddTravel()" class="traveling-form" #addTravelForm="ngForm">
     <h2>Adding Travel</h2>
     <div class="form-item">
-        <label for="" class="form-label">Country:</label>
-        <input type="text" class="form-input">
+        <label for="country" class="form-label">Country:</label>
+        <input id="country" type="text" class="form-input" autocomplete="off">
     </div>
     <div class="form-item date-input">
         <label for="startDate"  class="form-label">Start Date:</label>
@@ -16,5 +16,5 @@
         <label for="notes" class="form-label">Notes:</label>
         <input id="notes" type="text" class="form-input">
     </div>
-    <button type="submit" class="submit">Add</button>
+    <button type="submit" class="submit" [disabled]="!addTravelForm.valid">Add</button>
 </form>

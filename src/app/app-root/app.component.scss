@@ -9,18 +9,17 @@
         @include flex-vertically-center;
         justify-content: space-between;
         font-size: 1.4em;
-
+        
         > * {
             @include flex-vertically-center;
             gap: 10px;
         }
-
+        
         .logo-container {
             cursor: pointer;
             gap: 6px;
             .logo-txt {
                 font-weight: 600;
-                color: #000;
                 letter-spacing: 1.2px;
                 font-family: cursive;
             }
@@ -28,6 +27,10 @@
                 height: 32px;
                 width: 32px;
             }
+        }
+        nav {
+            font-family: monospace;
+            font-size: 1.2em;
         }
     }
 

@@ -31,6 +31,18 @@
         }
     }
 
+    input {
+        border-radius: 8px;
+        border: 1.5px solid white;
+        padding: 5px;
+        transition: border-color 0.3s;
+        &:focus-visible {
+            outline: unset;
+            border-color: $clr-accent;
+        }
+    }
+    
+
     .submit {
         margin-block-start: 15px;
         background-color: $btn-primary;

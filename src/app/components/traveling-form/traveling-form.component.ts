@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Travel } from 'src/app/models/travel.model';
 
 @Component({
   selector: 'app-traveling-form',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./traveling-form.component.scss']
 })
 export class TravelingFormComponent {
+
+  travel!: this
+
+
+  onAddTravel() {
+    console.log(`add Travel:`, )
+  }
 
 }
