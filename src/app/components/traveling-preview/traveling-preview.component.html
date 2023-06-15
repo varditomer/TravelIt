@@ -1,1 +1,9 @@
-<p>{{travel.country}}</p>
+<section class="table-preview">
+    <div class="flag-container">
+        <img class="table-item flag" src="{{travel.flag}}" />
+    </div>
+    <div class="table-item country">{{travel.country}}</div>
+    <div class="table-item date">{{travel.start_date | date}}</div>
+    <div class="table-item date">{{travel.end_date | date}}</div>
+    <div class="table-item notes">{{travel.notes}}</div>
+</section>

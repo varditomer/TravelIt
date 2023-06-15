@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   constructor(
     private travelService: TravelService
   ) { }
-  travels$!: Observable<Travel[]>
+  travels$ = this.travelService.travels$
 
-  ngOnInit(): void {
-    this.travelService.query()
-    this.travels$ = this.travelService.travels$
-  }
+  // ngOnInit(): void {
+  //   // this.travelService.query()
+  //   this.travels$ = this.travelService.travels$
+  // }
 }

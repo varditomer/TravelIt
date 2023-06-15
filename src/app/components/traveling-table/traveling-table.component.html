@@ -1,3 +1,10 @@
 <section class="traveling-table">
+    <div class="table-header">
+        <div>Flag</div>
+        <div>Country</div>
+        <div>Start Date</div>
+        <div>End Date</div>
+        <div>Notes</div>
+    </div>
     <app-traveling-preview *ngFor="let travel of travels" [travel]="travel"></app-traveling-preview>
 </section>
