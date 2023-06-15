@@ -1,0 +1,6 @@
+<section class="countries-modal">
+    <div class="country-container" *ngFor="let country of countries" (click)="onSelectCountry(country)">
+        <img src="{{country.flag}}" alt="" class="country-flag">
+        <span class="country-name">{{country.name}}</span>
+    </div>
+</section>

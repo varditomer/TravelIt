@@ -1,0 +1,30 @@
+@import "../../../styles.scss";
+
+.countries-modal {
+    @include flex-column;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 8px;
+    padding: 8px;
+    direction: ltr;
+    width: 100%;
+
+    gap: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    .country-container {
+        @include flex-vertically-center;
+        cursor: pointer;
+        gap: 5px;
+        height: 20px;
+        .country-flag {
+            height: 100%;
+        }
+        &:hover {
+            background-color: lighten($clr-accent, 40%);
+        }
+    }
+}

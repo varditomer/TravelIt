@@ -10,6 +10,7 @@ import { TravelingTableComponent } from './components/traveling-table/traveling-
 import { TravelingPreviewComponent } from './components/traveling-preview/traveling-preview.component'; 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CountriesModalComponent } from './components/countries-modal/countries-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     TravelingFormComponent,
     TravelingTableComponent,
-    TravelingPreviewComponent
+    TravelingPreviewComponent,
+    CountriesModalComponent
   ],
   imports: [
     BrowserModule,

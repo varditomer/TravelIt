@@ -1,8 +1,9 @@
 <form (ngSubmit)="onAddTravel()" class="traveling-form" #addTravelForm="ngForm">
     <h2>Adding Travel</h2>
-    <div class="form-item">
+    <div class="form-item country-form-container">
         <label for="country" class="form-label">Country:</label>
         <input id="country" name="country" type="text" class="form-input" autocomplete="off" [ngModel]="travel.country" (ngModelChange)="onUserInput($event)">
+        <app-countries-modal *ngIf="countries?.length && isCountryModalOpen" [countries]="countries" (onSelect)="selectCountry($event)"></app-countries-modal>
     </div>
     <div class="form-item date-input">
         <label for="startDate"  class="form-label">Start Date:</label>
