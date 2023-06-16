@@ -52,6 +52,7 @@ export class TravelService {
           // return only country's names that start with user's input -> startingNames = ['United']
           return startingNames.length > 0
           // return only countries that have at least one name that starts with user's input -> United Arab Emirates will be include
+          // could easily replace with regex that will do the same -> just for clarifying 
         })),
         retry(1),
         catchError((err: HttpErrorResponse) => {
