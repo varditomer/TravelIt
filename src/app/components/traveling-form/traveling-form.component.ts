@@ -30,13 +30,14 @@ export class TravelingFormComponent {
   }
 
   onAddTravel() {
-    console.log(`this.travel:`, this.travel)
+    this.travelService.addTravel(this.travel)
+    this.travel = this.travelService.getEmptyTravel()
   }
 
   selectCountry(country: Country) {
     this.isCountryModalOpen = false
-    console.log(`1:`,)
-    console.log(`country:`, country)
+    this.travel.country = country.name
+    this.travel.flag = country.flag
   }
 
 }
