@@ -52,21 +52,14 @@
             border-color: $clr-accent;
         }
 
-        &.empty-touched-req-input {
-            border: unset;
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 2px;
-                height: 100%;
-                background-color: red;
-                border-top-left-radius: 8px;
-                border-bottom-left-radius: 8px;
-            }
-            // outline: 1px solid red;
-            // border-inline-start: 2px solid red;
+        &.ng-invalid.ng-touched {
+            border-left-color: red;
+            border-left-width: 2px;
+        }
+        
+        &.valid-input {
+            border-left-color: green;
+            border-left-width: 2px;
         }
     }
 
@@ -109,5 +102,10 @@
             opacity: 0.4;
             cursor: not-allowed;
         }
+    }
+    .errors {
+        font-size: 1.2em;
+        color: red;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 }
