@@ -1,8 +1,8 @@
 export interface Travel {
     _id: string,
     country: string,
-    start_date: Date,
-    end_date: Date,
+    start_date: Date | null,
+    end_date: Date | null,
     notes: string,
     flag: string
 }

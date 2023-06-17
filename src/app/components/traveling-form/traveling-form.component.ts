@@ -40,4 +40,10 @@ export class TravelingFormComponent {
     this.travel.flag = country.flag
   }
 
+  unselectCountry(ev: MouseEvent | TouchEvent) {
+    ev.preventDefault()
+    this.travel.country = ''
+    this.travel.flag = ''
+  }
+
 }

@@ -31,9 +31,10 @@
     }
 
     h2 {
-        font-family: cursive;
+        font-family: monospace;
         text-align: center;
         text-decoration: underline 2px solid $clr-accent;
+        font-size: 2em;
         cursor: default;
         &:hover {
             text-decoration: underline 6px solid $clr-accent;
@@ -41,6 +42,7 @@
     }
 
     input {
+        position: relative;
         border-radius: 8px;
         border: 1.5px solid white;
         padding: 5px;
@@ -49,8 +51,46 @@
             outline: unset;
             border-color: $clr-accent;
         }
+
+        &.empty-touched-req-input {
+            border: unset;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 2px;
+                height: 100%;
+                background-color: red;
+                border-top-left-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+            // outline: 1px solid red;
+            // border-inline-start: 2px solid red;
+        }
     }
-    
+
+    .selected-country-display {
+        @include flex-vertically-center;
+        position: relative;
+        height: 60px;
+        gap: 10px;
+        font-size: 1.3em;
+        .selected-country-flag {
+            height: 100%;
+        }
+
+        .unselect-country-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: $clr-accent;
+            border: none;
+            border-radius: 12px;
+            padding: 5px 10px;
+            color: white;
+        }
+    }
 
     .submit {
         margin-block-start: 15px;
@@ -61,6 +101,13 @@
         border-radius: 12px;
         padding: 5px 10px;
         color: white;
-
+        &:hover:not(:disabled) {
+            background-color: lighten($btn-primary, 10%);
+            box-shadow: 0 20px 80px -10px $btn-primary;
+        }
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
     }
 }

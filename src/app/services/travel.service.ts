@@ -29,8 +29,8 @@ export class TravelService {
   public getEmptyTravel = () => ({
     _id: this.utilService.makeId(),
     country: '',
-    start_date: new Date('2023-06-14'),
-    end_date: new Date('2023-06-20'),
+    start_date: null,
+    end_date: null,
     notes: '',
     flag: ''
   } as Travel)

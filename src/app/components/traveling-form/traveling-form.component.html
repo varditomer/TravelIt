@@ -2,20 +2,31 @@
     <h2>Adding Travel</h2>
     <div class="form-item country-form-container">
         <label for="countryId" class="form-label">Country:</label>
-        <input id="countryId" name="country" type="text" class="form-input" autocomplete="off" [ngModel]="travel.country" (ngModelChange)="onUserInput($event)" required>
-        <app-countries-modal *ngIf="countries?.length && isCountryModalOpen" [countries]="countries" (onSelect)="selectCountry($event)"></app-countries-modal>
+        <input id="countryId" name="country" type="text" class="form-input" autocomplete="off"
+            [ngModel]="travel.country" (ngModelChange)="onUserInput($event)" #country="ngModel" required>
+        <app-countries-modal *ngIf="countries?.length && isCountryModalOpen" [countries]="countries"
+            (onSelect)="selectCountry($event)"></app-countries-modal>
+    </div>
+    <div *ngIf="travel.country" class="selected-country-display">
+        <img class="selected-country-flag" [src]="travel.flag" alt="">
+        <div class="selected-country-name">{{travel.country}}</div>
+        <button class="unselect-country-btn" (click)="unselectCountry($event)">X</button>
     </div>
     <div class="form-item date-input">
-        <label for="startDateId"  class="form-label">Start Date:</label>
-        <input id="startDateId" name="startDate" type="date" class="form-input" [(ngModel)]="travel.start_date" required>
+        <label for="startDateId" class="form-label">Start Date:</label>
+        <input id="startDateId" name="startDate" type="date" class="form-input" [(ngModel)]="travel.start_date"
+            #startDate="ngModel" [ngClass]="{'empty-touched-req-input': startDate.touched && startDate.invalid}"
+            required>
     </div>
     <div class="form-item date-input">
         <label for="endDateId" class="form-label">End Date:</label>
-        <input id="endDateId" name="endDate" type="date" class="form-input" [(ngModel)]="travel.end_date" required>
+        <input id="endDateId" name="endDate" type="date" class="form-input" [(ngModel)]="travel.end_date"
+            #endDate="ngModel" [ngClass]="{'empty-touched-req-input': endDate.touched && endDate.invalid}" required>
     </div>
     <div class="form-item notes">
         <label for="notesId" class="form-label">Notes:</label>
         <input id="notesId" name="notes" type="text" class="form-input" [(ngModel)]="travel.notes" autocomplete="off">
     </div>
-    <button type="submit" class="submit" [disabled]="!addTravelForm.valid">Add</button>
+    <button type="submit" class="submit" [ngClass]="{'button-disabled': !addTravelForm.valid}"
+        [disabled]="!addTravelForm.valid">Add</button>
 </form>

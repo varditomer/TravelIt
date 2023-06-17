@@ -13,6 +13,7 @@
     overflow-y: auto;
     top: 32px;
     left: 0;
+    z-index: 20;
     .country-container {
         @include flex-vertically-center;
         cursor: pointer;
