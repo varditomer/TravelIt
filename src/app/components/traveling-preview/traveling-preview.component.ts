@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Travel } from 'src/app/models/travel.model';
 
 @Component({
@@ -9,5 +9,8 @@ import { Travel } from 'src/app/models/travel.model';
 export class TravelingPreviewComponent {
 
   @Input() travel!: Travel
+  @Output() onRemove = new EventEmitter<Travel>()
+
+  onRemoveTravel = () => this.onRemove.emit(this.travel)
 
 }

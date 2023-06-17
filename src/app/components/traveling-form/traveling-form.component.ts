@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Country, Travel } from 'src/app/models/travel.model';
 import { TravelService } from 'src/app/services/travel.service';
 
@@ -29,8 +30,10 @@ export class TravelingFormComponent {
     return
   }
 
-  onAddTravel() {
-    this.travelService.addTravel(this.travel)
+  onAddTravel(addTravelForm: NgForm) {
+    const travelToAdd = {...this.travel}
+    this.travelService.add(travelToAdd)
+    addTravelForm.reset()
     this.travel = this.travelService.getEmptyTravel()
   }
 

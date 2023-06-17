@@ -1,8 +1,8 @@
-<form (ngSubmit)="onAddTravel()" class="traveling-form" #addTravelForm="ngForm">
+<form (ngSubmit)="onAddTravel(addTravelForm)" class="traveling-form" #addTravelForm="ngForm">
     <h2>Adding Travel</h2>
     <div class="form-item country-form-container">
         <label for="countryId" class="form-label">Country:</label>
-        <input id="countryId" name="country" type="text" class="form-input" autocomplete="off"
+        <input *ngIf="!travel.flag" id="countryId" name="country" type="text" class="form-input" autocomplete="off"
             [ngModel]="travel.country" (ngModelChange)="onUserInput($event)" #country="ngModel" required>
         <app-countries-modal *ngIf="countries?.length && isCountryModalOpen" [countries]="countries"
             (onSelect)="selectCountry($event)"></app-countries-modal>
@@ -10,7 +10,7 @@
     <div *ngIf="travel.country" class="selected-country-display">
         <img class="selected-country-flag" [src]="travel.flag" alt="">
         <div class="selected-country-name">{{travel.country}}</div>
-        <button class="unselect-country-btn" (click)="unselectCountry($event)">X</button>
+        <button type="button" class="unselect-country-btn" (click)="unselectCountry($event)">X</button>
     </div>
     <div class="form-item date-input">
         <label for="startDateId" class="form-label">Start Date:</label>

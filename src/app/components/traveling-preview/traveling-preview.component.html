@@ -6,5 +6,5 @@
     <div class="table-item date">{{travel.start_date | date}}</div>
     <div class="table-item date">{{travel.end_date | date}}</div>
     <div class="table-item notes">{{travel.notes}}</div>
-    <span class="remove-btn">X</span>
+    <span class="remove-btn" (click)="onRemoveTravel()">X</span>
 </section>

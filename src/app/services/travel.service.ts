@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Country, Travel } from '../models/travel.model';
-import { BehaviorSubject, catchError, map, retry, filter, throwError, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, retry, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UtilService } from './util.service';
-
-
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +12,12 @@ export class TravelService {
 
   constructor(
     private http: HttpClient,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private storageService: LocalStorageService
   ) { }
+  private _STORAGE_KEY = 'travels'
 
-  // Mock the database
-  private _travelsDB: Travel[] = [
-    // { _id: 't101', country: 'Israel', start_date: new Date('2023-06-14'), end_date: new Date('2023-06-20'), notes: '', flag: 'https://flagcdn.com/il.svg' },
-    // { _id: 't102', country: 'Spain', start_date: new Date('2023-06-14'), end_date: new Date('2023-06-20'), notes: '', flag: 'https://flagcdn.com/es.svg' },
-    // { _id: 't103', country: 'Brazil', start_date: new Date('2023-06-14'), end_date: new Date('2023-06-20'), notes: '', flag: 'https://flagcdn.com/br.svg' },
-  ];
+  private _travelsDB: Travel[] = this.storageService.loadFromStorage(this._STORAGE_KEY) || [];
 
   private _travels$ = new BehaviorSubject<Travel[]>(this._travelsDB) // travel collection mutable initially sends the current travelsDB
   public travels$ = this._travels$.asObservable() // travels collection read-only
@@ -35,12 +31,17 @@ export class TravelService {
     flag: ''
   } as Travel)
 
-  public addTravel(newTravel: Travel) {
+  public add(newTravel: Travel) {
     this._travelsDB.push(newTravel)
     this._travels$.next([...this._travelsDB])
-    return of(newTravel)
+    this.storageService.saveToStorage(this._STORAGE_KEY, this._travelsDB)
   }
 
+  public remove(travelToRemove: Travel) {
+    this._travelsDB = this._travelsDB.filter(travel => travel._id !== travelToRemove._id)
+    this._travels$.next([...this._travelsDB])
+    this.storageService.saveToStorage(this._STORAGE_KEY, this._travelsDB)
+  }
 
   public getCountries(countryName: string) {
     return this.http.get<any>(`https://restcountries.com/v3.1/name/${countryName}`)

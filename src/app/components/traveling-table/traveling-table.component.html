@@ -6,5 +6,5 @@
         <div>End Date</div>
         <div>Notes</div>
     </div>
-    <app-traveling-preview *ngFor="let travel of travels" [travel]="travel"></app-traveling-preview>
+    <app-traveling-preview *ngFor="let travel of travels" [travel]="travel" (onRemove)="onRemoveTravel($event)"></app-traveling-preview>
 </section>

@@ -14,8 +14,7 @@ export class HomeComponent {
   ) { }
   travels$ = this.travelService.travels$
 
-  // ngOnInit(): void {
-  //   // this.travelService.query()
-  //   this.travels$ = this.travelService.travels$
-  // }
+  removeTravel = (travelToRemove: Travel) => {
+    this.travelService.remove(travelToRemove)
+  }
 }
