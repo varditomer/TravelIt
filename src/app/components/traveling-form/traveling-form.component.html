@@ -16,13 +16,18 @@
         <label for="startDateId" class="form-label">Start Date:</label>
         <input id="startDateId" name="startDate" type="date" class="form-input" [(ngModel)]="travel.start_date"
             #startDate="ngModel" [ngClass]="{'empty-touched-req-input': startDate.touched && startDate.invalid}"
-            required>
+            (ngModelChange)="startDateEndDateValidator(startDate, endDate)" required minlength="10">
     </div>
     <div class="form-item date-input">
         <label for="endDateId" class="form-label">End Date:</label>
         <input id="endDateId" name="endDate" type="date" class="form-input" [(ngModel)]="travel.end_date"
-            #endDate="ngModel" [ngClass]="{'empty-touched-req-input': endDate.touched && endDate.invalid}" required>
+        #endDate="ngModel" [ngClass]="{'empty-touched-req-input': endDate.touched && endDate.invalid}"
+        (ngModelChange)="startDateEndDateValidator(startDate, endDate)" required>
     </div>
+    <p class="errors" *ngIf="endDate.invalid || startDate.invalid && endDate.dirty && startDate.dirty">
+        <span *ngIf="endDate.errors?.['startDateEndDate']">end date is earlier than start date</span>
+        <span *ngIf="startDate.errors?.['always']">there will always be an error</span>
+    </p>
     <div class="form-item notes">
         <label for="notesId" class="form-label">Notes:</label>
         <input id="notesId" name="notes" type="text" class="form-input" [(ngModel)]="travel.notes" autocomplete="off">
