@@ -11,3 +11,8 @@ export interface Country {
     name: string,
     flag: string
 }
+
+export interface SortBy {
+    column: string,
+    ascending: boolean
+}

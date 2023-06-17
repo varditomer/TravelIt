@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Country, Travel } from '../models/travel.model';
+import { Country, Travel, SortBy } from '../models/travel.model';
 import { BehaviorSubject, catchError, map, retry, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UtilService } from './util.service';
@@ -15,12 +15,17 @@ export class TravelService {
     private utilService: UtilService,
     private storageService: LocalStorageService
   ) { }
-  private _STORAGE_KEY = 'travels'
+  private _TRAVELS_STORAGE_KEY = 'travels'
+  private _SORT_BY_STORAGE_KEY = 'sortBy'
 
-  private _travelsDB: Travel[] = this.storageService.loadFromStorage(this._STORAGE_KEY) || [];
+  private _travelsDB: Travel[] = this.storageService.loadFromStorage(this._TRAVELS_STORAGE_KEY) as Travel[] || [];
+  private _sortBy: SortBy = this.storageService.loadFromStorage(this._SORT_BY_STORAGE_KEY) as SortBy || null
 
   private _travels$ = new BehaviorSubject<Travel[]>(this._travelsDB) // travel collection mutable initially sends the current travelsDB
   public travels$ = this._travels$.asObservable() // travels collection read-only
+
+  private _sortBy$ = new BehaviorSubject<SortBy>(this._sortBy) // travel collection mutable initially sends the current travelsDB
+  public sortBy$ = this._sortBy$.asObservable() // travels collection read-only
 
   public getEmptyTravel = () => ({
     _id: this.utilService.makeId(),
@@ -32,15 +37,50 @@ export class TravelService {
   } as Travel)
 
   public add(newTravel: Travel) {
-    this._travelsDB.push(newTravel)
+    this._travelsDB.unshift(newTravel)
     this._travels$.next([...this._travelsDB])
-    this.storageService.saveToStorage(this._STORAGE_KEY, this._travelsDB)
+    this.storageService.saveToStorage(this._TRAVELS_STORAGE_KEY, this._travelsDB)
   }
 
   public remove(travelToRemove: Travel) {
     this._travelsDB = this._travelsDB.filter(travel => travel._id !== travelToRemove._id)
     this._travels$.next([...this._travelsDB])
-    this.storageService.saveToStorage(this._STORAGE_KEY, this._travelsDB)
+    this.storageService.saveToStorage(this._TRAVELS_STORAGE_KEY, this._travelsDB)
+  }
+
+  public sortTableBy(sortBy: SortBy) {
+    console.log(`sortBy.column:`, sortBy.column)
+    switch (sortBy.column) {
+      case 'country':
+        this._travelsDB.sort((a, b) => {
+          if (sortBy.ascending) {
+            return a.country.localeCompare(b.country)
+          } else {
+            return b.country.localeCompare(a.country)
+          }
+        })
+        break;
+      case 'start_date':
+      case 'end_date':
+        const cName: 'start_date' | 'end_date' = sortBy.column
+        this._travelsDB.sort((a, b) => {
+          const dateA: Date = new Date(a[cName]!)
+          const dateB: Date = new Date(b[cName]!)
+          if (sortBy.ascending) {
+            return dateA.getTime() - dateB.getTime()
+          } else {
+            return dateB.getTime() - dateA.getTime()
+          }
+        });
+        break;
+
+      default:
+        break;
+    }
+    this._travels$.next([...this._travelsDB])
+    this.storageService.saveToStorage(this._TRAVELS_STORAGE_KEY, this._travelsDB)
+    this._sortBy$.next(sortBy)
+    this.storageService.saveToStorage(this._SORT_BY_STORAGE_KEY, this._sortBy)
   }
 
   public getCountries(countryName: string) {

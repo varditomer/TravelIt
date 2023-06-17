@@ -1,4 +1,5 @@
 <section class="home-page">
     <app-traveling-form></app-traveling-form>
-    <app-traveling-table [travels]="travels$ | async" (onRemove)="removeTravel($event)"></app-traveling-table>
+    <app-traveling-table [travels]="travels$ | async" [sortBy]="sortBy$ | async" (onRemove)="removeTravel($event)"
+        (onSort)="sortTableBy($event)"></app-traveling-table>
 </section>

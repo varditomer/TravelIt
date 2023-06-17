@@ -1,9 +1,18 @@
 <section class="traveling-table">
     <div class="table-header">
         <div>Flag</div>
-        <div>Country</div>
-        <div>Start Date</div>
-        <div>End Date</div>
+        <div class="sorted-column">
+            <span class="title">Country</span>
+            <span class="sort-dir" (click)="onSortBy('country')">^</span>
+        </div>
+        <div class="sorted-column">
+            <span class="title">Start Date</span>
+            <span class="sort-dir" (click)="onSortBy('start_date')">^</span>
+        </div>
+        <div class="sorted-column">
+            <span class="title">End Date</span>
+            <span class="sort-dir" (click)="onSortBy('end_date')">^</span>
+        </div>
         <div>Notes</div>
     </div>
     <app-traveling-preview *ngFor="let travel of travels" [travel]="travel" (onRemove)="onRemoveTravel($event)"></app-traveling-preview>

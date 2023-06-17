@@ -18,5 +18,34 @@
             font-size: 2em;
             font-family: monospace;
         }
+        .sorted-column {
+            position: relative;
+            @include hover-supported {
+                &:hover {
+                    background-color: darken($bgc-primary, 10%);
+                    .sort-dir {
+                        opacity: 1;
+                    }
+                }
+            }
+            .sort-dir {
+                cursor: pointer;
+                position: absolute;
+                @include flex-vertically-center;
+                justify-content: center;
+                top: 50%;
+                right: 10px;
+                transform: translate(0, -50%);
+                font-size: 24px;
+                font-weight: 600;
+                transition: color 0.3s;
+                @include hover-supported {
+                    opacity: 0;
+                }
+                &:hover {
+                    color: $btn-primary;
+                }
+            }
+        }
     }
 }

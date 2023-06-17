@@ -24,7 +24,7 @@
             #endDate="ngModel" [ngClass]="{'valid-input': endDate.valid && startDate.valid}"
             (ngModelChange)="startDateEndDateValidator(startDate, endDate)" required>
     </div>
-    <p class="errors" *ngIf="endDate.invalid || startDate.invalid && endDate.dirty && startDate.dirty">
+    <p class="errors" *ngIf="(endDate.invalid || startDate.invalid) && endDate.dirty && startDate.dirty">
         <span *ngIf="endDate.errors?.['startDateEndDate']">Start date must be earlier than end date</span>
     </p>
     <div class="form-item notes">
