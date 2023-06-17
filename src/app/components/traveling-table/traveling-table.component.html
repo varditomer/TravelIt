@@ -3,17 +3,21 @@
         <div>Flag</div>
         <div class="sorted-column">
             <span class="title">Country</span>
-            <span class="sort-dir" (click)="onSortBy('country')">^</span>
+            <span class="sort-dir" (click)="onSortBy('country')"
+                [ngClass]="{'sort-active': sortBy?.column==='country', 'descending': sortBy?.column==='country'&&!sortBy?.ascending}">^</span>
         </div>
         <div class="sorted-column">
             <span class="title">Start Date</span>
-            <span class="sort-dir" (click)="onSortBy('start_date')">^</span>
+            <span class="sort-dir" (click)="onSortBy('start_date')"
+                [ngClass]="{'sort-active': sortBy?.column==='start_date', 'descending': sortBy?.column==='start_date'&&!sortBy?.ascending}">^</span>
         </div>
         <div class="sorted-column">
             <span class="title">End Date</span>
-            <span class="sort-dir" (click)="onSortBy('end_date')">^</span>
+            <span class="sort-dir" (click)="onSortBy('end_date')"
+                [ngClass]="{'sort-active': sortBy?.column==='end_date', 'descending': sortBy?.column==='end_date'&&!sortBy?.ascending}">^</span>
         </div>
         <div>Notes</div>
     </div>
-    <app-traveling-preview *ngFor="let travel of travels" [travel]="travel" (onRemove)="onRemoveTravel($event)"></app-traveling-preview>
+    <app-traveling-preview *ngFor="let travel of travels" [travel]="travel"
+        (onRemove)="onRemoveTravel($event)"></app-traveling-preview>
 </section>
