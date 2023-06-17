@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Country, Travel } from 'src/app/models/travel.model';
+import { Country } from 'src/app/models/travel.model';
 import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
