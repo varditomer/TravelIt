@@ -9,12 +9,14 @@
     font-size: 1.2em;
     font-family: Arial, Helvetica, sans-serif;
 
-    > *:not(:last-child) {
+    > * {
         @include flex-vertically-center;
-        border-inline-end: 1px solid black;
+        &:not(.notes) {
+            border-inline-end: 1px solid black;
+        }
     }
 
-    > * {
+    > *:not(.remove-btn) {
         padding: 10px;
     }
 
@@ -26,17 +28,34 @@
         }
     }
     .remove-btn {
+        @include flex-vertically-center;
+        justify-content: center;
         position: absolute;
-        top: 0;
-        right: 0;
-        background-color: $clr-accent;
+        top: 10px;
+        right: 10px;
+        background-color: $btn-secondary;
         border: none;
-        border-radius: 12px;
-        padding: 5px 10px;
+        border-radius: 2em;
+        width: 20px;
+        height: 20px;
+        font-size: 10px;
+        font-weight: 600;
         color: white;
+        transition: background-color 0.3s;
         cursor: pointer;
-        &:hover {
+        @include hover-supported {
+            opacity: 0;
+            transition: opacity 0.3s;
+            &:hover {
+                background-color: darken($btn-secondary, 15%);
+            }
+        }
+    }
 
+    &:hover {
+        background-color: darken($bgc-primary, 5%);
+        .remove-btn {
+            opacity: 1;
         }
     }
 }
