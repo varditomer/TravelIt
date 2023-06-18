@@ -15,6 +15,9 @@
 
         grid-template-rows: repeat(5, 60px);
         position: sticky;
+        left: 0;
+        background-color: white;
+        z-index: 50;
 
         > * {
             border-block-start: 1px solid black;
@@ -108,6 +111,10 @@
                     right: 10px;
                 }
             }    
+            position: unset;
+            left: unset;
+            background-color: unset;
+            z-index: unset;
         }
         &:last-child {
             border-inline-end: unset;
