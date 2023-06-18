@@ -3,24 +3,35 @@
 .traveling-table {
     border-radius: 12px;
     @include card-style;
+
+    display: flex;
+    overflow-x: auto;
+    max-width: max-content;
+    margin-inline: auto;
+    border-inline-start: 1px solid black;
+
     .table-header {
         display: grid;
-        grid-template-columns: repeat(5, minmax(200px, 1fr));
-        border: 1px solid black;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-        > *:not(:last-child) {
-            border-inline-end: 1px solid black;
+
+        grid-template-rows: repeat(5, 60px);
+        position: sticky;
+
+        > * {
+            border-block-start: 1px solid black;
         }
+
+        border-block-end: 1px solid black;
+
+        font-family: monospace;
+        font-weight: 500;
+        font-size: 20px;
         > * {
             padding: 10px;
-            font-weight: 500;
-            font-size: 2em;
-            font-family: monospace;
             user-select: none;
         }
         .sorted-column {
             position: relative;
+            cursor: pointer;
             @include hover-supported {
                 &:hover {
                     background-color: darken($bgc-primary, 10%);
@@ -29,12 +40,12 @@
                     }
                 }
             }
+
             .sort-dir {
-                cursor: pointer;
                 position: absolute;
                 @include flex-vertically-center;
                 justify-content: center;
-                top: 10px;
+                bottom: 0;
                 right: 10px;
                 font-size: 24px;
                 font-weight: 600;
@@ -57,6 +68,49 @@
                     transform: rotate(180deg);
                 }
             }
+        }
+    }
+    &:last-child {
+        border-inline-end: 1px solid black;
+    }
+}
+
+@include for-small-layout {
+}
+
+@include for-wide-layout {
+    .traveling-table {
+        display: unset;
+        overflow-x: unset;
+        border-inline-start: unset;
+
+        .table-header {
+            border-block-end: unset;
+            grid-template-columns: repeat(5, minmax(200px, 1fr));
+            grid-template-rows: unset;
+            border: 1px solid black;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            font-size: 24px;
+
+            > * {
+                border-block-start: unset;
+            }
+
+            > *:not(:last-child) {
+                border-inline-end: 1px solid black;
+                border-block-end: unset;
+            }
+
+            .sorted-column {
+                .sort-dir {
+                    top: 10px;
+                    right: 10px;
+                }
+            }    
+        }
+        &:last-child {
+            border-inline-end: unset;
         }
     }
 }

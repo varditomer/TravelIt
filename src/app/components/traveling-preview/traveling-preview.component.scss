@@ -1,18 +1,20 @@
 @import "../../../styles.scss";
 .table-preview {
     position: relative;
-    max-height: 60px;
+
     display: grid;
-    grid-template-columns: repeat(5, minmax(200px, 1fr));
-    border: 1px solid black;
-    border-block-start: unset;
-    font-size: 1.2em;
+    grid-template-rows: repeat(5, 60px);
+    width: 100%;
+
+    border-inline-start: 1px solid black;
+    border-block: 1px solid black; 
+    // font-size: 1.2em;
     font-family: Arial, Helvetica, sans-serif;
 
     > * {
         @include flex-vertically-center;
         &:not(.notes) {
-            border-inline-end: 1px solid black;
+            border-block-end: 1px solid black;
         }
     }
 
@@ -56,6 +58,32 @@
         background-color: darken($bgc-primary, 5%);
         .remove-btn {
             opacity: 1;
+        }
+    }
+}
+
+@include for-small-layout {
+}
+
+@include for-wide-layout {
+    .table-preview {
+        grid-template-columns: repeat(5, minmax(200px, 1fr));
+        max-height: 60px;
+        border-inline-start: unset;
+        border-block: unset; 
+
+        border-inline: 1px solid black;
+        border-block-end: 1px solid black;
+        font-size: 18px;
+
+
+        > * {
+            @include flex-vertically-center;
+            border-inline-start: unset; 
+            &:not(.notes) {
+                border-inline-end: 1px solid black;
+                border-block-end: unset;
+            }
         }
     }
 }

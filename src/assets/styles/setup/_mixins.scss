@@ -18,3 +18,16 @@
         @content;
     }
 }
+
+@mixin for-small-layout {
+    @media (min-width: 800px) {
+        @content;
+    }
+}
+
+@mixin for-wide-layout {
+    @media (min-width: 1020px) {
+        @content;
+    }
+
+}

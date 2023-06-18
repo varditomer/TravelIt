@@ -1,19 +1,19 @@
 <section class="traveling-table">
     <div class="table-header">
         <div>Flag</div>
-        <div class="sorted-column">
+        <div class="sorted-column" (click)="onSortBy('country')">
             <span class="title">Country</span>
-            <span class="sort-dir" (click)="onSortBy('country')"
+            <span class="sort-dir"
                 [ngClass]="{'sort-active': sortBy?.column==='country', 'descending': sortBy?.column==='country'&&!sortBy?.ascending}">^</span>
         </div>
-        <div class="sorted-column">
+        <div class="sorted-column" (click)="onSortBy('start_date')">
             <span class="title">Start Date</span>
-            <span class="sort-dir" (click)="onSortBy('start_date')"
+            <span class="sort-dir"
                 [ngClass]="{'sort-active': sortBy?.column==='start_date', 'descending': sortBy?.column==='start_date'&&!sortBy?.ascending}">^</span>
         </div>
-        <div class="sorted-column">
+        <div class="sorted-column" (click)="onSortBy('end_date')">
             <span class="title">End Date</span>
-            <span class="sort-dir" (click)="onSortBy('end_date')"
+            <span class="sort-dir"
                 [ngClass]="{'sort-active': sortBy?.column==='end_date', 'descending': sortBy?.column==='end_date'&&!sortBy?.ascending}">^</span>
         </div>
         <div>Notes</div>

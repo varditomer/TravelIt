@@ -16,6 +16,8 @@ body {
     ::selection {
         background-color: $clr-accent;
     }
+    max-width: 1240px;
+    margin-inline: auto;
 }
 
 h1,
