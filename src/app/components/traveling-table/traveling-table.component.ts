@@ -31,7 +31,6 @@ export class TravelingTableComponent {
         ascending: true
       }
     }
-    console.log(`newSortby:`, newSortby)
     this.onSort.emit(newSortby)
   }
 

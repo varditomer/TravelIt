@@ -38,7 +38,6 @@ export class TravelingFormComponent {
   }
 
   startDateEndDateValidator(startDate: NgModel, endDate: NgModel): void {
-    console.log(`1:`, 1)
     const validatorFn = (): ValidationErrors | null => {
 
       const { start_date, end_date } = this.travel

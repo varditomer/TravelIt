@@ -49,7 +49,6 @@ export class TravelService {
   }
 
   public sortTableBy(sortBy: SortBy) {
-    console.log(`sortBy.column:`, sortBy.column)
     switch (sortBy.column) {
       case 'country':
         this._travelsDB.sort((a, b) => {
