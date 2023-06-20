@@ -58,11 +58,9 @@ export class TravelingFormComponent {
   }
 
   properlySelectedCountryValidator(addTravelForm: NgForm): void {
-    console.log(`123:`, )
     const validatorFn = (): ValidationErrors | null => {
       const { flag } = this.travel
       if (!flag) {
-        console.log(`123445s:`, )
         return { improperlySelectCountry: true } //If user enter a addTravelForm without selecting it in the countries option an obtain it a flag
       }
       return null
@@ -70,7 +68,6 @@ export class TravelingFormComponent {
     if (addTravelForm.control.validator) addTravelForm.control.setValidators(Validators.compose([addTravelForm.control.validator, validatorFn]))
     else addTravelForm.control.setValidators(validatorFn)
     addTravelForm.control.updateValueAndValidity()
-    console.log(`countryInput.control.validator:`, addTravelForm.errors)
   }
 
 
