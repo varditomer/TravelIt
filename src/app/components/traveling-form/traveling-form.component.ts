@@ -34,6 +34,8 @@ export class TravelingFormComponent {
     const travelToAdd = { ...this.travel }
     this.travelService.add(travelToAdd)
     addTravelForm.reset()
+    addTravelForm.control.clearValidators()
+    
     this.travel = this.travelService.getEmptyTravel()
   }
 
