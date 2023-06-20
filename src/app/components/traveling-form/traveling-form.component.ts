@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm, NgModel, ValidationErrors, Validators } from '@angular/forms';
-import { Country } from 'src/app/models/travel.model';
+import { Country, Travel } from 'src/app/models/travel.model';
 import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
@@ -55,6 +55,22 @@ export class TravelingFormComponent {
     if (endDate.control.validator) endDate.control.setValidators(Validators.compose([endDate.control.validator, validatorFn]))
     else endDate.control.setValidators(validatorFn)
     endDate.control.updateValueAndValidity()
+  }
+
+  properlySelectedCountryValidator(addTravelForm: NgForm): void {
+    console.log(`123:`, )
+    const validatorFn = (): ValidationErrors | null => {
+      const { flag } = this.travel
+      if (!flag) {
+        console.log(`123445s:`, )
+        return { improperlySelectCountry: true } //If user enter a addTravelForm without selecting it in the countries option an obtain it a flag
+      }
+      return null
+    }
+    if (addTravelForm.control.validator) addTravelForm.control.setValidators(Validators.compose([addTravelForm.control.validator, validatorFn]))
+    else addTravelForm.control.setValidators(validatorFn)
+    addTravelForm.control.updateValueAndValidity()
+    console.log(`countryInput.control.validator:`, addTravelForm.errors)
   }
 
 

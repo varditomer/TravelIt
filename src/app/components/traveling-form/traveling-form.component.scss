@@ -51,7 +51,7 @@
             border-color: $clr-accent;
         }
 
-        &.ng-invalid.ng-touched {
+        &.ng-invalid.ng-touched, &.invalid {
             border-left-color: red;
             border-left-width: 2px;
         }
@@ -60,6 +60,7 @@
             border-left-color: green;
             border-left-width: 2px;
         }
+
     }
 
     .selected-country-display {

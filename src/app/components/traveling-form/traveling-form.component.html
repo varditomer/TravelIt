@@ -3,10 +3,13 @@
     <div class="form-item country-form-container">
         <label for="countryId" class="form-label">Country:</label>
         <input *ngIf="!travel.flag" id="countryId" name="country" type="text" class="form-input" autocomplete="off"
-            [ngModel]="travel.country" (ngModelChange)="onUserInput($event)" #country="ngModel" required>
+            [ngModel]="travel.country" (ngModelChange)="onUserInput($event)" #countryInput="ngModel" required (blur)="properlySelectedCountryValidator(addTravelForm)" [ngClass]="{'invalid': addTravelForm.errors?.['improperlySelectCountry']}">
         <app-countries-modal *ngIf="countries?.length && isCountryModalOpen" [countries]="countries"
             (onSelect)="selectCountry($event)"></app-countries-modal>
     </div>
+    <p class="errors" *ngIf="addTravelForm.errors?.['improperlySelectCountry']">
+        <span>Country must be selected from the options list</span>
+    </p>
     <div *ngIf="travel.country" class="selected-country-display">
         <img class="selected-country-flag" [src]="travel.flag" alt="">
         <div class="selected-country-name">{{travel.country}}</div>
